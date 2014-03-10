@@ -14,10 +14,9 @@ window.App = {
     };
 
     App.Routers.Main = Backbone.Router.extend({
-      handleChange: function() {
-      var input = $("#input").val;
-      var words = App.autocompleter.complete(input);
-      $("#completions").html(words);
+      routes: {
+        "" : "index"
+      }
   }
     })
   }

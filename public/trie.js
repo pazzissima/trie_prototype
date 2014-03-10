@@ -6,7 +6,7 @@ Trie = function() {
 
 Trie.prototype.learn = function(word, index) {
   if (word.length > index) {
-    var character = word.charAt(index);
+    var character = word.charAt(index); //the nth character of the string
     var child = this.children[character] || new Trie();
     child.learn(word, index + 1)
     this.children[character] = child;
