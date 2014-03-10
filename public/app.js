@@ -17,10 +17,40 @@ window.App = {
       routes: {
         "" : "index"
       }
-  }
-    })
-  }
-};
+         initialize: function(){
+      this.view = new App.Views.AutoComplete();
+      this.view.render();
+      $('body').html(this.view.$el);
+      },
+ 
+        index: function(){
+      }
+ 
+        });
+ 
+    App.Views.AutoComplete = Backbone.View.extend({
+      events: {
+      'keyup #word': 'autoComplete'
+    },
+ 
+    render: function(){
+      this.$el.html("<input type='text' name='word' id='word'><div id='container'></div>");
+    },
+ 
+    autoComplete: function(event){
+      var input = $('#word').val();
+      if (input === ""){
+        $('#container').empty();
+      }else {
+        $('#container').empty();
+        var words = App.autocompleter.complete(input);
+        _.each(words, function(word){
+          $('#container').append('<h3>'+ word +'</h3>');
+        });
+      }
+    }
+ 
+   });
 $(document).ready(function(){
   App.initialize();
 });
